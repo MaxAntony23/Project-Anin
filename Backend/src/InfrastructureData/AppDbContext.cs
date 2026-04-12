@@ -13,6 +13,7 @@ public class AppDbContext : DbContext
     public DbSet<Infraestructura> Infraestructuras { get; set; }
     public DbSet<Incidente> Incidentes { get; set; }
     public DbSet<AuditoriaLog> AuditoriaLogs { get; set; }
+    public DbSet<RefreshToken> RefreshTokens { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -57,6 +58,18 @@ public class AppDbContext : DbContext
             .OnDelete(DeleteBehavior.SetNull);
         modelBuilder.Entity<Incidente>()
             .HasIndex(i => new { i.Estado, i.Severidad });
+
+        // RefreshToken
+        modelBuilder.Entity<RefreshToken>()
+            .HasKey(rt => rt.Id);
+        modelBuilder.Entity<RefreshToken>()
+            .HasOne(rt => rt.Usuario)
+            .WithMany()
+            .HasForeignKey(rt => rt.UsuarioId)
+            .OnDelete(DeleteBehavior.Cascade);
+        modelBuilder.Entity<RefreshToken>()
+            .HasIndex(rt => rt.Token)
+            .IsUnique();
 
         // AuditoriaLog
         modelBuilder.Entity<AuditoriaLog>()
