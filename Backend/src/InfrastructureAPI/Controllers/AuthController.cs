@@ -1,7 +1,9 @@
 using InfrastructureCore.DTOs;
 using InfrastructureCore.Interfaces;
+using InfrastructureData;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace InfrastructureAPI.Controllers;
 
@@ -10,10 +12,12 @@ namespace InfrastructureAPI.Controllers;
 public class AuthController : ControllerBase
 {
     private readonly IAuthService _authService;
+    private readonly AppDbContext _context;
 
-    public AuthController(IAuthService authService)
+    public AuthController(IAuthService authService, AppDbContext context)
     {
         _authService = authService;
+        _context = context;
     }
 
     [HttpPost("login")]
@@ -68,5 +72,25 @@ public class AuthController : ControllerBase
         {
             return BadRequest(new { error = ex.Message });
         }
+    }
+
+    [HttpGet("usuarios")]
+    [Authorize]
+    public async Task<ActionResult<List<UsuarioResponseDto>>> GetUsuarios()
+    {
+        var usuarios = await _context.Usuarios
+            .Where(u => u.Activo)
+            .OrderBy(u => u.NombreCompleto)
+            .Select(u => new UsuarioResponseDto
+            {
+                Id = u.Id,
+                Email = u.Email,
+                NombreCompleto = u.NombreCompleto,
+                Rol = u.Rol,
+                Activo = u.Activo,
+            })
+            .ToListAsync();
+
+        return Ok(usuarios);
     }
 }

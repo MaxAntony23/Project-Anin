@@ -38,4 +38,76 @@ api.interceptors.response.use(
   }
 );
 
+export { api };
 export default api;
+
+// ─── Infraestructuras ────────────────────────────────────────────────────────
+export const infraestructuraAPI = {
+  getAll: (params?: {
+    page?: number;
+    pageSize?: number;
+    region?: string;
+    estado?: string;
+    tipo?: string;
+    search?: string;
+  }) => api.get('/Infraestructuras', { params }),
+
+  getById: (id: string) => api.get(`/Infraestructuras/${id}`),
+
+  create: (data: {
+    nombre: string;
+    tipo: string;
+    estado: string;
+    region: string;
+    latitud: number;
+    longitud: number;
+    capacidadMaxima?: number;
+    capacidadActual?: number;
+    responsableId?: string;
+  }) => api.post('/Infraestructuras', data),
+
+  update: (id: string, data: {
+    nombre: string;
+    tipo: string;
+    estado: string;
+    region: string;
+    latitud: number;
+    longitud: number;
+    capacidadMaxima?: number;
+    capacidadActual?: number;
+    responsableId?: string;
+  }) => api.put(`/Infraestructuras/${id}`, data),
+
+  delete: (id: string) => api.delete(`/Infraestructuras/${id}`),
+};
+
+// ─── Incidentes ──────────────────────────────────────────────────────────────
+export const incidenteAPI = {
+  getAll: (params?: {
+    page?: number;
+    pageSize?: number;
+    estado?: string;
+    severidad?: string;
+    infraestructuraId?: string;
+  }) => api.get('/Incidentes', { params }),
+
+  getById: (id: string) => api.get(`/Incidentes/${id}`),
+
+  create: (data: {
+    titulo: string;
+    descripcion: string;
+    severidad: string;
+    infraestructuraId: string;
+  }) => api.post('/Incidentes', data),
+
+  asignar: (id: string, usuarioId: string) =>
+    api.put(`/Incidentes/${id}/asignar`, { usuarioId }),
+
+  resolver: (id: string, data: { notasResolucion: string }) =>
+    api.patch(`/Incidentes/${id}/resolver`, data),
+};
+
+// ─── Usuarios ────────────────────────────────────────────────────────────────
+export const usuariosAPI = {
+  getAll: () => api.get('/auth/usuarios'),
+};

@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useAuthStore } from './store';
 import { PrivateRoute, Navbar } from './components';
-import { LoginPage, DashboardPage, NotFoundPage } from './pages';
+import { LoginPage, DashboardPage, NotFoundPage, InfrastructurasPage, IncidentesPage } from './pages';
 
 function App() {
   const initializeAuth = useAuthStore((s) => s.initializeAuth);
@@ -25,12 +25,11 @@ function App() {
             </PrivateRoute>
           }
         />
-        {/* Rutas futuras */}
         <Route
           path="/infraestructuras"
           element={
             <PrivateRoute>
-              <DashboardPage />
+              <InfrastructurasPage />
             </PrivateRoute>
           }
         />
@@ -38,7 +37,7 @@ function App() {
           path="/incidentes"
           element={
             <PrivateRoute>
-              <DashboardPage />
+              <IncidentesPage />
             </PrivateRoute>
           }
         />
