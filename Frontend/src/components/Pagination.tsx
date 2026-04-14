@@ -17,7 +17,7 @@ export const Pagination: React.FC<PaginationProps> = ({
   const to = Math.min(page * pageSize, total);
 
   return (
-    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mt-4 text-sm text-gray-600">
+    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mt-4 text-sm text-brand-slate">
       <span className="text-center sm:text-left">
         Mostrando {from}–{to} de {total} registros
       </span>
@@ -25,17 +25,17 @@ export const Pagination: React.FC<PaginationProps> = ({
         <button
           onClick={() => onPageChange(page - 1)}
           disabled={page <= 1}
-          className="px-3 py-1.5 rounded border border-gray-300 hover:bg-gray-50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+          className="px-3 py-1.5 rounded border border-brand-light hover:bg-brand-light/50 text-brand-slate disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
         >
           Anterior
         </button>
-        <span className="px-3 py-1.5 rounded bg-blue-50 text-blue-700 font-medium border border-blue-200">
+        <span className="px-3 py-1.5 rounded bg-brand-navy text-white font-medium">
           {page} / {totalPages}
         </span>
         <button
           onClick={() => onPageChange(page + 1)}
           disabled={page >= totalPages}
-          className="px-3 py-1.5 rounded border border-gray-300 hover:bg-gray-50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+          className="px-3 py-1.5 rounded border border-brand-light hover:bg-brand-light/50 text-brand-slate disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
         >
           Siguiente
         </button>

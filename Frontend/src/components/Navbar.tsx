@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { LayoutDashboard, Building2, AlertTriangle, LogOut, Menu, X, User } from 'lucide-react';
 import { useAuthStore } from '../store';
 
 const navLinks = [
-  { to: '/dashboard', label: 'Dashboard' },
-  { to: '/infraestructuras', label: 'Infraestructuras' },
-  { to: '/incidentes', label: 'Incidentes' },
+  { to: '/dashboard',       label: 'Dashboard',        Icon: LayoutDashboard },
+  { to: '/infraestructuras', label: 'Infraestructuras', Icon: Building2 },
+  { to: '/incidentes',      label: 'Incidentes',        Icon: AlertTriangle },
 ];
 
 export const Navbar: React.FC = () => {
@@ -21,25 +22,31 @@ export const Navbar: React.FC = () => {
   };
 
   return (
-    <nav className="bg-blue-700 text-white shadow-lg">
+    <nav className="bg-brand-navy text-white shadow-lg">
       {/* Barra principal */}
       <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
         {/* Logo */}
-        <span className="text-base font-bold tracking-tight whitespace-nowrap">
-          🏗️ <span className="hidden sm:inline">ANIN — Sistema de Infraestructuras</span>
-          <span className="sm:hidden">ANIN</span>
-        </span>
+        <div className="flex items-center gap-2">
+          <Building2 className="w-5 h-5 text-brand-red" />
+          <span className="text-base font-bold tracking-tight">
+            <span className="hidden sm:inline">ANIN — Sistema de Infraestructuras</span>
+            <span className="sm:hidden">ANIN</span>
+          </span>
+        </div>
 
         {/* Links de escritorio */}
         <div className="hidden md:flex gap-1">
-          {navLinks.map(({ to, label }) => (
+          {navLinks.map(({ to, label, Icon }) => (
             <Link
               key={to}
               to={to}
-              className={`px-3 py-2 rounded transition-colors text-sm font-medium ${
-                location.pathname === to ? 'bg-blue-900' : 'hover:bg-blue-600'
+              className={`flex items-center gap-1.5 px-3 py-2 rounded text-sm font-medium transition-colors ${
+                location.pathname === to
+                  ? 'bg-white/15 text-white'
+                  : 'text-brand-light/80 hover:bg-white/10 hover:text-white'
               }`}
             >
+              <Icon className="w-4 h-4" />
               {label}
             </Link>
           ))}
@@ -49,58 +56,54 @@ export const Navbar: React.FC = () => {
         <div className="flex items-center gap-2">
           <div className="hidden md:block text-right text-sm mr-1">
             <p className="font-medium leading-tight">{user?.nombreCompleto}</p>
-            <p className="text-blue-200 text-xs">{user?.rol}</p>
+            <p className="text-brand-light/60 text-xs">{user?.rol}</p>
           </div>
           <button
             onClick={handleLogout}
-            className="hidden md:block bg-red-500 hover:bg-red-600 px-3 py-1.5 rounded text-sm font-medium transition-colors"
+            className="hidden md:flex items-center gap-1.5 bg-brand-red hover:bg-brand-red/85 px-3 py-1.5 rounded text-sm font-medium transition-colors"
           >
+            <LogOut className="w-4 h-4" />
             Salir
           </button>
 
           {/* Botón hamburger */}
           <button
             onClick={() => setMenuOpen((v) => !v)}
-            className="md:hidden p-2 rounded hover:bg-blue-600 transition-colors"
+            className="md:hidden p-2 rounded hover:bg-white/10 transition-colors"
             aria-label="Menú"
           >
-            {menuOpen ? (
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            ) : (
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            )}
+            {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
       </div>
 
       {/* Menú móvil desplegable */}
       {menuOpen && (
-        <div className="md:hidden border-t border-blue-600 px-4 pb-4 pt-2 space-y-1">
+        <div className="md:hidden border-t border-white/10 px-4 pb-4 pt-2 space-y-1">
           {/* Info usuario */}
-          <div className="flex items-center gap-3 py-2 mb-2 border-b border-blue-600">
-            <div className="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center text-sm font-bold">
-              {user?.nombreCompleto?.charAt(0).toUpperCase()}
+          <div className="flex items-center gap-3 py-2 mb-2 border-b border-white/10">
+            <div className="w-8 h-8 rounded-full bg-brand-red flex items-center justify-center">
+              <User className="w-4 h-4" />
             </div>
             <div>
               <p className="text-sm font-medium">{user?.nombreCompleto}</p>
-              <p className="text-xs text-blue-200">{user?.rol}</p>
+              <p className="text-xs text-brand-light/60">{user?.rol}</p>
             </div>
           </div>
 
           {/* Links */}
-          {navLinks.map(({ to, label }) => (
+          {navLinks.map(({ to, label, Icon }) => (
             <Link
               key={to}
               to={to}
               onClick={() => setMenuOpen(false)}
-              className={`block px-3 py-2.5 rounded text-sm font-medium transition-colors ${
-                location.pathname === to ? 'bg-blue-900' : 'hover:bg-blue-600'
+              className={`flex items-center gap-2 px-3 py-2.5 rounded text-sm font-medium transition-colors ${
+                location.pathname === to
+                  ? 'bg-white/15 text-white'
+                  : 'text-brand-light/80 hover:bg-white/10 hover:text-white'
               }`}
             >
+              <Icon className="w-4 h-4" />
               {label}
             </Link>
           ))}
@@ -108,8 +111,9 @@ export const Navbar: React.FC = () => {
           {/* Logout */}
           <button
             onClick={handleLogout}
-            className="w-full mt-2 bg-red-500 hover:bg-red-600 px-3 py-2.5 rounded text-sm font-medium transition-colors text-left"
+            className="w-full mt-2 flex items-center gap-2 bg-brand-red hover:bg-brand-red/85 px-3 py-2.5 rounded text-sm font-medium transition-colors"
           >
+            <LogOut className="w-4 h-4" />
             Cerrar sesión
           </button>
         </div>

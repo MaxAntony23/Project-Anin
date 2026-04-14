@@ -8,10 +8,10 @@ const ESTADOS = ['Operativa', 'Mantenimiento', 'FueraDeServicio', 'Danada'];
 const REGIONES = ['Lima', 'Arequipa', 'Cusco', 'Junín', 'La Libertad', 'Piura', 'Cajamarca', 'Puno', 'Loreto', 'Ucayali'];
 
 const estadoBadge: Record<string, string> = {
-  Operativa: 'bg-green-100 text-green-700',
-  Mantenimiento: 'bg-yellow-100 text-yellow-700',
-  FueraDeServicio: 'bg-red-100 text-red-700',
-  Danada: 'bg-orange-100 text-orange-700',
+  Operativa:       'bg-emerald-100 text-emerald-700',
+  Mantenimiento:   'bg-amber-100 text-amber-700',
+  FueraDeServicio: 'bg-brand-red/10 text-brand-red',
+  Danada:          'bg-orange-100 text-orange-700',
 };
 
 interface FormData {
@@ -182,7 +182,7 @@ export const InfrastructurasPage: React.FC = () => {
           required
           value={formData.nombre}
           onChange={(e) => setFormData({ ...formData, nombre: e.target.value })}
-          className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full border border-brand-light rounded-lg px-3 py-2 text-sm text-brand-navy focus:outline-none focus:ring-2 focus:ring-brand-navy/30"
         />
       </div>
       <div>
@@ -190,7 +190,7 @@ export const InfrastructurasPage: React.FC = () => {
         <select
           value={formData.tipo}
           onChange={(e) => setFormData({ ...formData, tipo: e.target.value })}
-          className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full border border-brand-light rounded-lg px-3 py-2 text-sm text-brand-navy focus:outline-none focus:ring-2 focus:ring-brand-navy/30"
         >
           {TIPOS.map((t) => <option key={t}>{t}</option>)}
         </select>
@@ -200,7 +200,7 @@ export const InfrastructurasPage: React.FC = () => {
         <select
           value={formData.estado}
           onChange={(e) => setFormData({ ...formData, estado: e.target.value })}
-          className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full border border-brand-light rounded-lg px-3 py-2 text-sm text-brand-navy focus:outline-none focus:ring-2 focus:ring-brand-navy/30"
         >
           {ESTADOS.map((e) => <option key={e}>{e}</option>)}
         </select>
@@ -210,7 +210,7 @@ export const InfrastructurasPage: React.FC = () => {
         <select
           value={formData.region}
           onChange={(e) => setFormData({ ...formData, region: e.target.value })}
-          className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full border border-brand-light rounded-lg px-3 py-2 text-sm text-brand-navy focus:outline-none focus:ring-2 focus:ring-brand-navy/30"
         >
           {REGIONES.map((r) => <option key={r}>{r}</option>)}
         </select>
@@ -220,7 +220,7 @@ export const InfrastructurasPage: React.FC = () => {
         <select
           value={formData.responsableId}
           onChange={(e) => setFormData({ ...formData, responsableId: e.target.value })}
-          className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full border border-brand-light rounded-lg px-3 py-2 text-sm text-brand-navy focus:outline-none focus:ring-2 focus:ring-brand-navy/30"
         >
           <option value="">Sin asignar</option>
           {usuarios.map((u) => <option key={u.id} value={u.id}>{u.nombreCompleto}</option>)}
@@ -234,7 +234,7 @@ export const InfrastructurasPage: React.FC = () => {
           step="any"
           value={formData.latitud}
           onChange={(e) => setFormData({ ...formData, latitud: e.target.value })}
-          className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full border border-brand-light rounded-lg px-3 py-2 text-sm text-brand-navy focus:outline-none focus:ring-2 focus:ring-brand-navy/30"
           placeholder="-12.046"
         />
       </div>
@@ -246,7 +246,7 @@ export const InfrastructurasPage: React.FC = () => {
           step="any"
           value={formData.longitud}
           onChange={(e) => setFormData({ ...formData, longitud: e.target.value })}
-          className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full border border-brand-light rounded-lg px-3 py-2 text-sm text-brand-navy focus:outline-none focus:ring-2 focus:ring-brand-navy/30"
           placeholder="-77.043"
         />
       </div>
@@ -256,7 +256,7 @@ export const InfrastructurasPage: React.FC = () => {
           type="number"
           value={formData.capacidadMaxima}
           onChange={(e) => setFormData({ ...formData, capacidadMaxima: e.target.value })}
-          className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full border border-brand-light rounded-lg px-3 py-2 text-sm text-brand-navy focus:outline-none focus:ring-2 focus:ring-brand-navy/30"
         />
       </div>
       <div>
@@ -265,41 +265,41 @@ export const InfrastructurasPage: React.FC = () => {
           type="number"
           value={formData.capacidadActual}
           onChange={(e) => setFormData({ ...formData, capacidadActual: e.target.value })}
-          className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full border border-brand-light rounded-lg px-3 py-2 text-sm text-brand-navy focus:outline-none focus:ring-2 focus:ring-brand-navy/30"
         />
       </div>
     </form>
   );
 
   return (
-    <div className="p-4 md:p-6 bg-gray-50 min-h-screen">
+    <div className="p-4 md:p-6 bg-brand-light/40 min-h-screen">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-5">
         <div>
-          <h1 className="text-xl md:text-2xl font-bold text-gray-800">Infraestructuras</h1>
-          <p className="text-gray-500 text-sm">Gestión de infraestructuras nacionales</p>
+          <h1 className="text-xl md:text-2xl font-bold text-brand-navy">Infraestructuras</h1>
+          <p className="text-brand-slate text-sm">Gestión de infraestructuras nacionales</p>
         </div>
         <button
           onClick={openCreate}
-          className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors self-start sm:self-auto"
+          className="bg-brand-red text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-brand-red/85 transition-colors self-start sm:self-auto"
         >
           + Nueva infraestructura
         </button>
       </div>
 
       {/* Filtros */}
-      <div className="bg-white rounded-xl shadow-sm p-4 mb-4 flex flex-wrap gap-3">
+      <div className="bg-white rounded-xl shadow-sm p-4 mb-4 flex flex-wrap gap-3 border border-brand-light">
         <input
           type="text"
           placeholder="Buscar por nombre..."
           value={filters.search}
           onChange={(e) => { setFilters({ ...filters, search: e.target.value }); setPage(1); }}
-          className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 flex-1 min-w-[180px]"
+          className="border border-brand-light rounded-lg px-3 py-2 text-sm text-brand-navy focus:outline-none focus:ring-2 focus:ring-brand-navy/30 flex-1 min-w-[180px]"
         />
         <select
           value={filters.region}
           onChange={(e) => { setFilters({ ...filters, region: e.target.value }); setPage(1); }}
-          className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="border border-brand-light rounded-lg px-3 py-2 text-sm text-brand-navy focus:outline-none focus:ring-2 focus:ring-brand-navy/30"
         >
           <option value="">Todas las regiones</option>
           {REGIONES.map((r) => <option key={r}>{r}</option>)}
@@ -307,7 +307,7 @@ export const InfrastructurasPage: React.FC = () => {
         <select
           value={filters.estado}
           onChange={(e) => { setFilters({ ...filters, estado: e.target.value }); setPage(1); }}
-          className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="border border-brand-light rounded-lg px-3 py-2 text-sm text-brand-navy focus:outline-none focus:ring-2 focus:ring-brand-navy/30"
         >
           <option value="">Todos los estados</option>
           {ESTADOS.map((e) => <option key={e}>{e}</option>)}
@@ -315,7 +315,7 @@ export const InfrastructurasPage: React.FC = () => {
       </div>
 
       {/* Tabla */}
-      <div className="bg-white rounded-xl shadow-sm p-4">
+      <div className="bg-white rounded-xl shadow-sm p-4 border border-brand-light">
         <DataTable
           columns={columns}
           data={data?.items ?? []}
@@ -384,7 +384,7 @@ export const InfrastructurasPage: React.FC = () => {
           <>
             <button
               onClick={() => { setShowCreate(false); setEditItem(null); }}
-              className="px-4 py-2 text-sm text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50"
+              className="px-4 py-2 text-sm text-brand-slate border border-brand-light rounded-lg hover:bg-brand-light/50"
             >
               Cancelar
             </button>
@@ -392,7 +392,7 @@ export const InfrastructurasPage: React.FC = () => {
               type="submit"
               form="infra-form"
               disabled={saving}
-              className="px-4 py-2 text-sm text-white bg-blue-600 rounded-lg hover:bg-blue-700 disabled:opacity-50"
+              className="px-4 py-2 text-sm text-white bg-brand-navy rounded-lg hover:bg-brand-navy/85 disabled:opacity-50"
             >
               {saving ? 'Guardando...' : editItem ? 'Actualizar' : 'Crear'}
             </button>
@@ -412,13 +412,13 @@ export const InfrastructurasPage: React.FC = () => {
           <>
             <button
               onClick={() => setDeleteItem(null)}
-              className="px-4 py-2 text-sm text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50"
+              className="px-4 py-2 text-sm text-brand-slate border border-brand-light rounded-lg hover:bg-brand-light/50"
             >
               Cancelar
             </button>
             <button
               onClick={handleDelete}
-              className="px-4 py-2 text-sm text-white bg-red-600 rounded-lg hover:bg-red-700"
+              className="px-4 py-2 text-sm text-white bg-brand-red rounded-lg hover:bg-brand-red/85"
             >
               Eliminar
             </button>

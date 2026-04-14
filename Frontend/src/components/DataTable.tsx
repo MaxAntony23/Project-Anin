@@ -35,40 +35,40 @@ export function DataTable<T extends { id: string }>({
   }
 
   return (
-    <div className="overflow-x-auto rounded-lg border border-gray-200">
-      <table className="min-w-full divide-y divide-gray-200 text-sm">
-        <thead className="bg-gray-50">
+    <div className="overflow-x-auto rounded-lg border border-brand-light">
+      <table className="min-w-full divide-y divide-brand-light text-sm">
+        <thead className="bg-brand-navy">
           <tr>
             {columns.map((col) => (
               <th
                 key={col.key}
-                className={`px-4 py-3 text-left font-semibold text-gray-600 uppercase tracking-wide text-xs ${col.className ?? ''}`}
+                className={`px-4 py-3 text-left font-semibold text-brand-light/80 uppercase tracking-wide text-xs ${col.className ?? ''}`}
               >
                 {col.header}
               </th>
             ))}
             {hasActions && (
-              <th className="px-4 py-3 text-right font-semibold text-gray-600 uppercase tracking-wide text-xs">
+              <th className="px-4 py-3 text-right font-semibold text-brand-light/80 uppercase tracking-wide text-xs">
                 Acciones
               </th>
             )}
           </tr>
         </thead>
-        <tbody className="bg-white divide-y divide-gray-100">
+        <tbody className="bg-white divide-y divide-brand-light/60">
           {data.length === 0 ? (
             <tr>
               <td
                 colSpan={columns.length + (hasActions ? 1 : 0)}
-                className="px-4 py-8 text-center text-gray-400"
+                className="px-4 py-8 text-center text-brand-slate"
               >
                 {emptyMessage}
               </td>
             </tr>
           ) : (
             data.map((item) => (
-              <tr key={item.id} className="hover:bg-gray-50 transition-colors">
+              <tr key={item.id} className="hover:bg-brand-light/30 transition-colors">
                 {columns.map((col) => (
-                  <td key={col.key} className={`px-4 py-3 text-gray-700 ${col.className ?? ''}`}>
+                  <td key={col.key} className={`px-4 py-3 text-brand-navy ${col.className ?? ''}`}>
                     {col.render
                       ? col.render(item)
                       : String((item as Record<string, unknown>)[col.key] ?? '')}
@@ -80,7 +80,7 @@ export function DataTable<T extends { id: string }>({
                       {onView && (
                         <button
                           onClick={() => onView(item)}
-                          className="text-gray-500 hover:text-blue-600 transition-colors px-2 py-1 rounded hover:bg-blue-50 text-xs font-medium"
+                          className="text-brand-slate hover:text-brand-navy transition-colors px-2 py-1 rounded hover:bg-brand-light/60 text-xs font-medium"
                         >
                           Ver
                         </button>
@@ -88,7 +88,7 @@ export function DataTable<T extends { id: string }>({
                       {onEdit && (
                         <button
                           onClick={() => onEdit(item)}
-                          className="text-gray-500 hover:text-yellow-600 transition-colors px-2 py-1 rounded hover:bg-yellow-50 text-xs font-medium"
+                          className="text-brand-slate hover:text-amber-700 transition-colors px-2 py-1 rounded hover:bg-amber-50 text-xs font-medium"
                         >
                           Editar
                         </button>
@@ -96,7 +96,7 @@ export function DataTable<T extends { id: string }>({
                       {onDelete && (
                         <button
                           onClick={() => onDelete(item)}
-                          className="text-gray-500 hover:text-red-600 transition-colors px-2 py-1 rounded hover:bg-red-50 text-xs font-medium"
+                          className="text-brand-slate hover:text-brand-red transition-colors px-2 py-1 rounded hover:bg-brand-red/8 text-xs font-medium"
                         >
                           Eliminar
                         </button>

@@ -41,11 +41,11 @@ export const Modal: React.FC<ModalProps> = ({
     >
       <div className={`bg-white w-full sm:rounded-xl rounded-t-2xl shadow-xl sm:w-full ${sizeClasses[size]} max-h-[92vh] sm:max-h-[90vh] flex flex-col`}>
         {/* Header */}
-        <div className="flex items-center justify-between px-5 py-4 border-b border-gray-200">
-          <h2 className="text-base md:text-lg font-semibold text-gray-800">{title}</h2>
+        <div className="flex items-center justify-between px-5 py-4 border-b border-brand-light bg-brand-navy rounded-t-2xl sm:rounded-t-xl">
+          <h2 className="text-base md:text-lg font-semibold text-white">{title}</h2>
           <button
             onClick={onClose}
-            className="text-gray-400 hover:text-gray-600 transition-colors text-2xl leading-none w-8 h-8 flex items-center justify-center"
+            className="text-brand-light/60 hover:text-white transition-colors text-2xl leading-none w-8 h-8 flex items-center justify-center"
           >
             ×
           </button>
@@ -56,7 +56,7 @@ export const Modal: React.FC<ModalProps> = ({
 
         {/* Footer */}
         {footer && (
-          <div className="px-5 py-4 border-t border-gray-200 flex flex-wrap justify-end gap-2">
+          <div className="px-5 py-4 border-t border-brand-light flex flex-wrap justify-end gap-2">
             {footer}
           </div>
         )}

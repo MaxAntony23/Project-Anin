@@ -1,5 +1,12 @@
 @import "tailwindcss";
 
+@theme {
+  --color-brand-red:   #e11520;
+  --color-brand-navy:  #1d3150;
+  --color-brand-light: #e1dee3;
+  --color-brand-slate: #768193;
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
 }
@@ -7,8 +14,8 @@
 body {
   margin: 0;
   font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
-  background-color: #f9fafb;
-  color: #111827;
+  background-color: #f4f3f5;
+  color: #1d3150;
 }
 
 #root {

@@ -7,17 +7,17 @@ const SEVERIDADES = ['Baja', 'Media', 'Alta', 'Critica'];
 const ESTADOS = ['Abierto', 'EnProgreso', 'Resuelto', 'Cancelado'];
 
 const severidadBadge: Record<string, string> = {
-  Baja: 'bg-blue-100 text-blue-700',
-  Media: 'bg-yellow-100 text-yellow-700',
-  Alta: 'bg-orange-100 text-orange-700',
-  Critica: 'bg-red-100 text-red-700',
+  Baja:    'bg-brand-light text-brand-slate',
+  Media:   'bg-amber-100 text-amber-700',
+  Alta:    'bg-orange-100 text-orange-700',
+  Critica: 'bg-brand-red/10 text-brand-red',
 };
 
 const estadoBadge: Record<string, string> = {
-  Abierto: 'bg-red-100 text-red-700',
-  EnProgreso: 'bg-blue-100 text-blue-700',
-  Resuelto: 'bg-green-100 text-green-700',
-  Cancelado: 'bg-gray-100 text-gray-600',
+  Abierto:   'bg-brand-red/10 text-brand-red',
+  EnProgreso: 'bg-brand-navy/10 text-brand-navy',
+  Resuelto:  'bg-emerald-100 text-emerald-700',
+  Cancelado: 'bg-brand-light text-brand-slate',
 };
 
 export const IncidentesPage: React.FC = () => {
@@ -161,27 +161,27 @@ export const IncidentesPage: React.FC = () => {
   ];
 
   return (
-    <div className="p-4 md:p-6 bg-gray-50 min-h-screen">
+    <div className="p-4 md:p-6 bg-brand-light/40 min-h-screen">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-5">
         <div>
-          <h1 className="text-xl md:text-2xl font-bold text-gray-800">Incidentes</h1>
-          <p className="text-gray-500 text-sm">Gestión de incidentes e interrupciones</p>
+          <h1 className="text-xl md:text-2xl font-bold text-brand-navy">Incidentes</h1>
+          <p className="text-brand-slate text-sm">Gestión de incidentes e interrupciones</p>
         </div>
         <button
           onClick={() => { setCreateForm({ titulo: '', descripcion: '', severidad: 'Media', infraestructuraId: '' }); setFormError(''); setShowCreate(true); }}
-          className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors self-start sm:self-auto"
+          className="bg-brand-red text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-brand-red/85 transition-colors self-start sm:self-auto"
         >
           + Nuevo incidente
         </button>
       </div>
 
       {/* Filtros */}
-      <div className="bg-white rounded-xl shadow-sm p-4 mb-4 flex flex-wrap gap-3">
+      <div className="bg-white rounded-xl shadow-sm p-4 mb-4 flex flex-wrap gap-3 border border-brand-light">
         <select
           value={filters.estado}
           onChange={(e) => { setFilters({ ...filters, estado: e.target.value }); setPage(1); }}
-          className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="border border-brand-light rounded-lg px-3 py-2 text-sm text-brand-navy focus:outline-none focus:ring-2 focus:ring-brand-navy/30"
         >
           <option value="">Todos los estados</option>
           {ESTADOS.map((e) => <option key={e}>{e}</option>)}
@@ -189,7 +189,7 @@ export const IncidentesPage: React.FC = () => {
         <select
           value={filters.severidad}
           onChange={(e) => { setFilters({ ...filters, severidad: e.target.value }); setPage(1); }}
-          className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="border border-brand-light rounded-lg px-3 py-2 text-sm text-brand-navy focus:outline-none focus:ring-2 focus:ring-brand-navy/30"
         >
           <option value="">Todas las severidades</option>
           {SEVERIDADES.map((s) => <option key={s}>{s}</option>)}
@@ -197,7 +197,7 @@ export const IncidentesPage: React.FC = () => {
       </div>
 
       {/* Tabla */}
-      <div className="bg-white rounded-xl shadow-sm p-4">
+      <div className="bg-white rounded-xl shadow-sm p-4 border border-brand-light">
         <DataTable
           columns={columns}
           data={data?.items ?? []}
@@ -235,7 +235,7 @@ export const IncidentesPage: React.FC = () => {
               )}
               <button
                 onClick={() => { setResolveItem(viewItem); setViewItem(null); }}
-                className="px-4 py-2 text-sm text-white bg-green-600 rounded-lg hover:bg-green-700"
+                className="px-4 py-2 text-sm text-white bg-emerald-600 rounded-lg hover:bg-emerald-700"
               >
                 Resolver
               </button>
@@ -290,7 +290,7 @@ export const IncidentesPage: React.FC = () => {
           <>
             <button
               onClick={() => setShowCreate(false)}
-              className="px-4 py-2 text-sm text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50"
+              className="px-4 py-2 text-sm text-brand-slate border border-brand-light rounded-lg hover:bg-brand-light/50"
             >
               Cancelar
             </button>
@@ -298,7 +298,7 @@ export const IncidentesPage: React.FC = () => {
               type="submit"
               form="incidente-form"
               disabled={saving}
-              className="px-4 py-2 text-sm text-white bg-blue-600 rounded-lg hover:bg-blue-700 disabled:opacity-50"
+              className="px-4 py-2 text-sm text-white bg-brand-navy rounded-lg hover:bg-brand-navy/85 disabled:opacity-50"
             >
               {saving ? 'Guardando...' : 'Crear'}
             </button>
@@ -315,7 +315,7 @@ export const IncidentesPage: React.FC = () => {
               required
               value={createForm.titulo}
               onChange={(e) => setCreateForm({ ...createForm, titulo: e.target.value })}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full border border-brand-light rounded-lg px-3 py-2 text-sm text-brand-navy focus:outline-none focus:ring-2 focus:ring-brand-navy/30"
             />
           </div>
           <div>
@@ -325,7 +325,7 @@ export const IncidentesPage: React.FC = () => {
               rows={3}
               value={createForm.descripcion}
               onChange={(e) => setCreateForm({ ...createForm, descripcion: e.target.value })}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+              className="w-full border border-brand-light rounded-lg px-3 py-2 text-sm text-brand-navy focus:outline-none focus:ring-2 focus:ring-brand-navy/30 resize-none"
             />
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -334,7 +334,7 @@ export const IncidentesPage: React.FC = () => {
               <select
                 value={createForm.severidad}
                 onChange={(e) => setCreateForm({ ...createForm, severidad: e.target.value })}
-                className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full border border-brand-light rounded-lg px-3 py-2 text-sm text-brand-navy focus:outline-none focus:ring-2 focus:ring-brand-navy/30"
               >
                 {SEVERIDADES.map((s) => <option key={s}>{s}</option>)}
               </select>
@@ -345,7 +345,7 @@ export const IncidentesPage: React.FC = () => {
                 required
                 value={createForm.infraestructuraId}
                 onChange={(e) => setCreateForm({ ...createForm, infraestructuraId: e.target.value })}
-                className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full border border-brand-light rounded-lg px-3 py-2 text-sm text-brand-navy focus:outline-none focus:ring-2 focus:ring-brand-navy/30"
               >
                 <option value="">Seleccionar...</option>
                 {infraestructuras.map((i) => (
@@ -367,7 +367,7 @@ export const IncidentesPage: React.FC = () => {
           <>
             <button
               onClick={() => setResolveItem(null)}
-              className="px-4 py-2 text-sm text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50"
+              className="px-4 py-2 text-sm text-brand-slate border border-brand-light rounded-lg hover:bg-brand-light/50"
             >
               Cancelar
             </button>
@@ -393,7 +393,7 @@ export const IncidentesPage: React.FC = () => {
               rows={4}
               value={resolveNotes}
               onChange={(e) => setResolveNotes(e.target.value)}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500 resize-none"
+              className="w-full border border-brand-light rounded-lg px-3 py-2 text-sm text-brand-navy focus:outline-none focus:ring-2 focus:ring-green-500 resize-none"
               placeholder="Describe cómo se resolvió el incidente..."
             />
           </div>
@@ -410,7 +410,7 @@ export const IncidentesPage: React.FC = () => {
           <>
             <button
               onClick={() => setAsignarItem(null)}
-              className="px-4 py-2 text-sm text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50"
+              className="px-4 py-2 text-sm text-brand-slate border border-brand-light rounded-lg hover:bg-brand-light/50"
             >
               Cancelar
             </button>
@@ -418,7 +418,7 @@ export const IncidentesPage: React.FC = () => {
               type="submit"
               form="asignar-form"
               disabled={saving || !asignarUsuarioId}
-              className="px-4 py-2 text-sm text-white bg-blue-600 rounded-lg hover:bg-blue-700 disabled:opacity-50"
+              className="px-4 py-2 text-sm text-white bg-brand-navy rounded-lg hover:bg-brand-navy/85 disabled:opacity-50"
             >
               {saving ? 'Guardando...' : 'Asignar'}
             </button>
@@ -435,7 +435,7 @@ export const IncidentesPage: React.FC = () => {
               required
               value={asignarUsuarioId}
               onChange={(e) => setAsignarUsuarioId(e.target.value)}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full border border-brand-light rounded-lg px-3 py-2 text-sm text-brand-navy focus:outline-none focus:ring-2 focus:ring-brand-navy/30"
             >
               <option value="">Seleccionar usuario...</option>
               {usuarios.map((u) => (
