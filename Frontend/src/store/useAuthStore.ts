@@ -11,27 +11,24 @@ interface AuthState {
   initializeAuth: () => void;
 }
 
-export const useAuthStore = create<AuthState>((set) => ({
-  user: null,
-  token: null,
-  isAuthenticated: false,
+const storedToken = authService.getToken();
+const storedUser = authService.getStoredUser();
+
+export const useAuthStore = create<AuthState>(() => ({
+  user: storedUser,
+  token: storedToken,
+  isAuthenticated: !!(storedToken && storedUser),
 
   login: async (email, password) => {
     const response = await authService.login(email, password);
     authService.setTokens(response.token, response.refreshToken, response.user);
-    set({ user: response.user, token: response.token, isAuthenticated: true });
+    useAuthStore.setState({ user: response.user, token: response.token, isAuthenticated: true });
   },
 
   logout: () => {
     authService.logout();
-    set({ user: null, token: null, isAuthenticated: false });
+    useAuthStore.setState({ user: null, token: null, isAuthenticated: false });
   },
 
-  initializeAuth: () => {
-    const token = authService.getToken();
-    const user = authService.getStoredUser();
-    if (token && user) {
-      set({ user, token, isAuthenticated: true });
-    }
-  },
+  initializeAuth: () => {},
 }));
