@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Building2, LogIn } from 'lucide-react';
+import { LogIn } from 'lucide-react';
 import { useAuthStore } from '../store';
+import logoAnin from '/logo-anin.webp';
 
 export const LoginPage: React.FC = () => {
   const [email, setEmail] = useState('admin@test.com');
@@ -36,10 +37,8 @@ export const LoginPage: React.FC = () => {
       <div className="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md">
         {/* Header */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-brand-navy mb-4">
-            <Building2 className="w-8 h-8 text-white" />
-          </div>
-          <h1 className="text-2xl font-bold text-brand-navy">Infrastructure System</h1>
+          <img src={logoAnin} alt="ANIN" className="h-20 w-auto mx-auto mb-4" />
+          <h1 className="text-2xl font-bold text-brand-navy">Sistema de Infraestructuras</h1>
           <p className="text-brand-slate text-sm mt-1">Autoridad Nacional de Infraestructuras — Perú</p>
         </div>
 

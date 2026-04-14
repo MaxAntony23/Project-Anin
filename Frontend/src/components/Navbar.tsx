@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { LayoutDashboard, Building2, AlertTriangle, LogOut, Menu, X, User } from 'lucide-react';
 import { useAuthStore } from '../store';
+import logoAnin from '/logo-anin.webp';
 
 const navLinks = [
   { to: '/dashboard',       label: 'Dashboard',        Icon: LayoutDashboard },
@@ -27,10 +28,9 @@ export const Navbar: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center gap-2">
-          <Building2 className="w-5 h-5 text-brand-red" />
-          <span className="text-base font-bold tracking-tight">
-            <span className="hidden sm:inline">ANIN — Sistema de Infraestructuras</span>
-            <span className="sm:hidden">ANIN</span>
+          <img src={logoAnin} alt="ANIN" className="h-8 w-auto" />
+          <span className="text-base font-bold tracking-tight hidden sm:inline">
+            Sistema de Infraestructuras
           </span>
         </div>
 
