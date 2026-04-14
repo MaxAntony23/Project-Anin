@@ -17,11 +17,11 @@ export const Pagination: React.FC<PaginationProps> = ({
   const to = Math.min(page * pageSize, total);
 
   return (
-    <div className="flex items-center justify-between mt-4 text-sm text-gray-600">
-      <span>
+    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mt-4 text-sm text-gray-600">
+      <span className="text-center sm:text-left">
         Mostrando {from}–{to} de {total} registros
       </span>
-      <div className="flex items-center gap-2">
+      <div className="flex items-center justify-center gap-2">
         <button
           onClick={() => onPageChange(page - 1)}
           disabled={page <= 1}

@@ -172,7 +172,7 @@ export const InfrastructurasPage: React.FC = () => {
   ];
 
   const FormBody = (
-    <form id="infra-form" onSubmit={handleSubmit} className="grid grid-cols-2 gap-4">
+    <form id="infra-form" onSubmit={handleSubmit} className="grid grid-cols-1 sm:grid-cols-2 gap-4">
       {formError && (
         <div className="col-span-2 bg-red-50 text-red-700 text-sm px-3 py-2 rounded">{formError}</div>
       )}
@@ -272,16 +272,16 @@ export const InfrastructurasPage: React.FC = () => {
   );
 
   return (
-    <div className="p-6 bg-gray-50 min-h-screen">
+    <div className="p-4 md:p-6 bg-gray-50 min-h-screen">
       {/* Header */}
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-5">
         <div>
-          <h1 className="text-2xl font-bold text-gray-800">Infraestructuras</h1>
+          <h1 className="text-xl md:text-2xl font-bold text-gray-800">Infraestructuras</h1>
           <p className="text-gray-500 text-sm">Gestión de infraestructuras nacionales</p>
         </div>
         <button
           onClick={openCreate}
-          className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors"
+          className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors self-start sm:self-auto"
         >
           + Nueva infraestructura
         </button>

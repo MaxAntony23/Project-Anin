@@ -161,16 +161,16 @@ export const IncidentesPage: React.FC = () => {
   ];
 
   return (
-    <div className="p-6 bg-gray-50 min-h-screen">
+    <div className="p-4 md:p-6 bg-gray-50 min-h-screen">
       {/* Header */}
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-5">
         <div>
-          <h1 className="text-2xl font-bold text-gray-800">Incidentes</h1>
+          <h1 className="text-xl md:text-2xl font-bold text-gray-800">Incidentes</h1>
           <p className="text-gray-500 text-sm">Gestión de incidentes e interrupciones</p>
         </div>
         <button
           onClick={() => { setCreateForm({ titulo: '', descripcion: '', severidad: 'Media', infraestructuraId: '' }); setFormError(''); setShowCreate(true); }}
-          className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors"
+          className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors self-start sm:self-auto"
         >
           + Nuevo incidente
         </button>
@@ -328,7 +328,7 @@ export const IncidentesPage: React.FC = () => {
               className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
             />
           </div>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Severidad *</label>
               <select

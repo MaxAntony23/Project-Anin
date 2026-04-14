@@ -69,16 +69,16 @@ export const DashboardPage: React.FC = () => {
   };
 
   return (
-    <div className="p-6 bg-gray-50 min-h-screen">
+    <div className="p-4 md:p-6 bg-gray-50 min-h-screen">
       {/* Título */}
-      <div className="mb-6">
-        <h1 className="text-2xl font-bold text-gray-800">Dashboard</h1>
+      <div className="mb-5">
+        <h1 className="text-xl md:text-2xl font-bold text-gray-800">Dashboard</h1>
         <p className="text-gray-500 text-sm">Resumen de infraestructuras e incidentes activos</p>
       </div>
 
       {/* KPI Cards */}
       {estadisticas && (
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-5">
           <ResumenCard title="Total Infraestructuras" value={estadisticas.totalInfraestructuras} icon="🏗️" color="blue" />
           <ResumenCard title="Operativas" value={estadisticas.infraestructurasOperativas} icon="✅" color="green" subtitle="En funcionamiento" />
           <ResumenCard title="En Mantenimiento" value={estadisticas.infraestructurasMantenimiento} icon="🔧" color="yellow" />
@@ -91,17 +91,19 @@ export const DashboardPage: React.FC = () => {
       )}
 
       {/* Charts + Map */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-5">
         {/* Donut */}
         {donutData && (
-          <div className="bg-white rounded-xl shadow-sm p-5">
+          <div className="bg-white rounded-xl shadow-sm p-4 md:p-5">
             <h2 className="font-semibold text-gray-700 mb-4">Estado de infraestructuras</h2>
-            <Doughnut data={donutData} options={{ plugins: { legend: { position: 'bottom' } } }} />
+            <div className="max-w-xs mx-auto">
+              <Doughnut data={donutData} options={{ plugins: { legend: { position: 'bottom' } } }} />
+            </div>
           </div>
         )}
 
         {/* Bar chart */}
-        <div className="bg-white rounded-xl shadow-sm p-5">
+        <div className="bg-white rounded-xl shadow-sm p-4 md:p-5">
           <h2 className="font-semibold text-gray-700 mb-4">Infraestructuras por región</h2>
           <Bar
             data={barData}
@@ -115,7 +117,7 @@ export const DashboardPage: React.FC = () => {
 
         {/* Incidentes summary */}
         {estadisticas && (
-          <div className="bg-white rounded-xl shadow-sm p-5">
+          <div className="bg-white rounded-xl shadow-sm p-4 md:p-5 md:col-span-2 lg:col-span-1">
             <h2 className="font-semibold text-gray-700 mb-4">Estado de incidentes</h2>
             <div className="space-y-3">
               {[
@@ -136,7 +138,7 @@ export const DashboardPage: React.FC = () => {
       </div>
 
       {/* Mapa */}
-      <div className="bg-white rounded-xl shadow-sm p-5">
+      <div className="bg-white rounded-xl shadow-sm p-4 md:p-5">
         <h2 className="font-semibold text-gray-700 mb-4">
           Mapa de infraestructuras — Perú
           <span className="ml-2 text-xs font-normal text-gray-400">({infraestructuras.length} activas)</span>

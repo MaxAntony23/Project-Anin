@@ -20,14 +20,14 @@ const colorStyles: Record<CardColor, { card: string; value: string }> = {
 export const ResumenCard: React.FC<ResumenCardProps> = ({ title, value, icon, color, subtitle }) => {
   const styles = colorStyles[color];
   return (
-    <div className={`border-2 rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow ${styles.card}`}>
+    <div className={`border-2 rounded-xl p-3 md:p-5 shadow-sm hover:shadow-md transition-shadow ${styles.card}`}>
       <div className="flex items-start justify-between">
         <div>
-          <p className="text-gray-500 text-xs font-semibold uppercase tracking-wide">{title}</p>
-          <p className={`text-4xl font-bold mt-1 ${styles.value}`}>{value}</p>
+          <p className="text-gray-500 text-xs font-semibold uppercase tracking-wide leading-tight">{title}</p>
+          <p className={`text-3xl md:text-4xl font-bold mt-1 ${styles.value}`}>{value}</p>
           {subtitle && <p className="text-gray-400 text-xs mt-1">{subtitle}</p>}
         </div>
-        <span className="text-3xl opacity-80">{icon}</span>
+        <span className="text-2xl md:text-3xl opacity-80">{icon}</span>
       </div>
     </div>
   );
