@@ -1,0 +1,73 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:17-alpine
+    container_name: infrastructure_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: infrastructure_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - infrastructure_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  # Backend API
+  backend:
+    build:
+      context: ./Backend
+      dockerfile: Dockerfile
+    container_name: infrastructure_api
+    environment:
+      ConnectionStrings__DefaultConnection: "Host=postgres;Database=infrastructure_db;Username=postgres;Password=postgres;Port=5432"
+      ASPNETCORE_ENVIRONMENT: Production
+      ASPNETCORE_URLS: http://+:5000
+      Jwt__SecretKey: "InfrastructureManagementSystem_SecretKey_2024_ANIN_Peru_Secure"
+      Jwt__Issuer: "InfrastructureAPI"
+      Jwt__Audience: "InfrastructureFrontend"
+      Jwt__ExpirationHours: "8"
+    ports:
+      - "5000:5000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - infrastructure_network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/swagger/index.html"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+
+  # Frontend Web
+  frontend:
+    build:
+      context: ./Frontend
+      dockerfile: Dockerfile
+    container_name: infrastructure_web
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    networks:
+      - infrastructure_network
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+    driver: local
+
+networks:
+  infrastructure_network:
+    driver: bridge

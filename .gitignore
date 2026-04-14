@@ -1,0 +1,38 @@
+# Backend
+Backend/bin/
+Backend/obj/
+Backend/.vs/
+Backend/.vscode/
+Backend/appsettings.Development.json
+Backend/*.db
+
+# Frontend
+Frontend/node_modules/
+Frontend/dist/
+Frontend/build/
+Frontend/.env.local
+Frontend/.env.*.local
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Docker
+docker-compose.override.yml
