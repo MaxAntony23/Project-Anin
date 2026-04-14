@@ -23,7 +23,7 @@ export const Navbar: React.FC = () => {
   };
 
   return (
-    <nav className="bg-brand-navy text-white shadow-lg">
+    <nav className="bg-brand-header text-white shadow-lg">
       {/* Barra principal */}
       <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
         {/* Logo */}
